@@ -4,12 +4,14 @@ var wins = 0;
 var guesses = 12;
 var usedLetters = [];
 var randomWord = words[Math.floor(Math.random()*words.length)];
-var answer = [];
+const answer = [];
+
+ for (var i = 0; i < randomWord.length; i++) {
+   answer[i] = false;
+ }
 
 console.log(randomWord);
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-        't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
 
 function wordLength (){
 
@@ -30,7 +32,11 @@ document.onkeyup = function(event){
       document.getElementById("correct").innerHTML = "Correct "
       + randomWord[i];
       isFound = true;
-      answer.splice(i, 0, randomWord[i]);
+      for (var i = 0; i < answer.length; i++) {
+        if(userVal === randomWord[i] && answer[i] !== true){
+          answer[i] = true;
+        }
+      }
       print(answer);
       continue;
     }
@@ -55,6 +61,7 @@ document.onkeyup = function(event){
 function print (array){
   document.getElementById("print").innerHTML = "";
   for (var i = 0; i < array.length; i++) {
-    document.getElementById("print").innerHTML += array[i] + "";
+    if(answer[i] === true)
+      document.getElementById("print").innerHTML += randomWord[i] + "";
   }
 }
