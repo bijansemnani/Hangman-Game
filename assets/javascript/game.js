@@ -5,6 +5,7 @@ var guesses = 12;
 var usedLetters = [];
 var randomWord = words[Math.floor(Math.random()*words.length)];
 var answer = [];
+
 console.log(randomWord);
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
@@ -15,14 +16,16 @@ function wordLength (){
 }
 
 //compare the letters in the chosen word with user guesses
-function compare (event){
+document.onkeyup = function(event){
   isFound = false;
-  var userVal = event.which || event.keyCode;
+  var userVal = event.key;
+  console.log(userVal);
+
   for(var i = 0; i < randomWord.length; i++)
   {
-    var randLetter = randomWord.charCodeAt(i);
+    var randLetter = randomWord[i].toLowerCase();
     if(userVal === randLetter &&
-      usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
+      usedLetters.indexOf(userVal) < 0)
     {
       document.getElementById("correct").innerHTML = "Correct "
       + randomWord[i];
@@ -31,7 +34,7 @@ function compare (event){
       print(answer);
       continue;
     }
-    else if (usedLetters.indexOf(String.fromCharCode(userVal)) >= 0)
+    else if (usedLetters.indexOf(userVal) >= 0)
     {
       document.getElementById("used").innerHTML = "Already used dumby "
       + randomWord[i];
@@ -45,8 +48,8 @@ function compare (event){
     document.getElementById("incorrect").innerHTML = "Incorrect "
     + guesses;
   }
-  if (usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
-    usedLetters.push(String.fromCharCode(userVal));
+  if (usedLetters.indexOf(userVal) < 0)
+    usedLetters.push(userVal);
 }
 
 function print (array){
