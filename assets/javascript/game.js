@@ -1,10 +1,10 @@
 
-var words = ["this", "that", "bicep",
- "drain", "your", "avicii", "china"];
+var words = ["avicii"];
 var wins = 0;
 var guesses = 12;
 var usedLetters = [];
 var randomWord = words[Math.floor(Math.random()*words.length)];
+var answer = [];
 console.log(randomWord);
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
@@ -18,28 +18,32 @@ function wordLength (){
 function compare (event){
   isFound = false;
   var userVal = event.which || event.keyCode;
-  for(var i = 0; i < randomWord.length; i++){
+  for(var i = 0; i < randomWord.length; i++)
+  {
     var randLetter = randomWord.charCodeAt(i);
-    console.log(usedLetters.indexOf(String.fromCharCode(userVal)));
     if(userVal === randLetter &&
       usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
     {
       document.getElementById("correct").innerHTML = "Correct "
       + randomWord[i];
       isFound = true;
-      usedLetters.push(String.fromCharCode(userVal))
-      break;
-    } else if (usedLetters.indexOf(String.fromCharCode(userVal)) >= 0) {
+      answer.splice(i, 0, randomWord[i]);
+      continue;
+    }
+    else if (usedLetters.indexOf(String.fromCharCode(userVal)) >= 0)
+    {
       document.getElementById("used").innerHTML = "Already used dumby "
       + randomWord[i];
+      isFound = true;
       break;
     }
   }
-  if(!isFound){
+  if(!isFound)
+  {
     guesses--;
     document.getElementById("incorrect").innerHTML = "Incorrect "
     + guesses;
-    if (usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
-      usedLetters.push(String.fromCharCode(userVal));
   }
+  if (usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
+    usedLetters.push(String.fromCharCode(userVal));
 }
