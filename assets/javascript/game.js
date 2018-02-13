@@ -28,6 +28,7 @@ function compare (event){
       + randomWord[i];
       isFound = true;
       answer.splice(i, 0, randomWord[i]);
+      print(answer);
       continue;
     }
     else if (usedLetters.indexOf(String.fromCharCode(userVal)) >= 0)
@@ -46,4 +47,11 @@ function compare (event){
   }
   if (usedLetters.indexOf(String.fromCharCode(userVal)) < 0)
     usedLetters.push(String.fromCharCode(userVal));
+}
+
+function print (array){
+  document.getElementById("print").innerHTML = "";
+  for (var i = 0; i < array.length; i++) {
+    document.getElementById("print").innerHTML += array[i] + "";
+  }
 }
