@@ -13,8 +13,8 @@ setArray();
 
 //Function to set answer array to false
 function setArray(){
-  usedLetters = []
-  answer = []
+  usedLetters = [];
+  answer = [];
   for (var i = 0; i < randomWord.length; i++) {
     answer[i] = false;
     print(answer);
@@ -54,17 +54,19 @@ document.onkeyup = function(event){
     document.getElementById("incorrect").innerHTML = "Incorrect "
     + guesses;
   }
-  if(guesses === 0){
-    alert("You Lose :( ");
-    randomWord = words[Math.floor(Math.random()*words.length)];
-    winCounter = randomWord.length;
-    console.log(randomWord);
-    setArray();
-  }
 
   if (usedLetters.indexOf(userVal) < 0)
     usedLetters.push(userVal);
     used_Letters(usedLetters);
+
+  if(guesses === 0){
+    guesses = 12;
+    randomWord = words[Math.floor(Math.random()*words.length)];
+    winCounter = randomWord.length;
+    alert("You Lose :( ");
+    console.log(randomWord);
+    setArray();
+  }
 
   if(winCounter === 0){
     wins++;
