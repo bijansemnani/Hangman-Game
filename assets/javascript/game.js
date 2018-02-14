@@ -1,6 +1,7 @@
 //Initial variables
 var words = ["avicii", "tiesto", "swedish", "drain"];
 var wins = 0;
+var loses = 0;
 var guesses = 12;
 var usedLetters = [];
 var randomWord = words[Math.floor(Math.random()*words.length)];
@@ -30,8 +31,7 @@ document.onkeyup = function(event){
     var randLetter = randomWord[i].toLowerCase();
     if(userVal === randLetter &&
       usedLetters.indexOf(userVal) < 0){
-      document.getElementById("correct").innerHTML = "Correct "
-      + randomWord[i];
+
       isFound = true;
       for (var i = 0; i < answer.length; i++) {
         if(userVal === randomWord[i] && answer[i] !== true){
@@ -42,15 +42,24 @@ document.onkeyup = function(event){
       print(answer);
       continue;
     }
-    else if (usedLetters.indexOf(userVal) >= 0){
-      break;
-    }
+    // else if (usedLetters.indexOf(userVal) >= 0){
+    //   console.log("here");
+    //   break;
+    // }
   }
 
-  if(!isFound){
+  if(!isFound && usedLetters.indexOf(userVal) < 0){
+    console.log("here");
     guesses--;
     document.getElementById("incorrect").innerHTML = "Incorrect "
     + guesses;
+  }
+  if(guesses === 0){
+    alert("You Lose :( ");
+    randomWord = words[Math.floor(Math.random()*words.length)];
+    winCounter = randomWord.length;
+    console.log(randomWord);
+    setArray();
   }
 
   if (usedLetters.indexOf(userVal) < 0)
@@ -61,6 +70,7 @@ document.onkeyup = function(event){
     wins++;
     randomWord = words[Math.floor(Math.random()*words.length)];
     winCounter = randomWord.length;
+    alert("You Win !!! ");
     console.log(randomWord);
     setArray();
   }
