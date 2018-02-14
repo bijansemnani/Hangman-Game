@@ -8,12 +8,16 @@ const answer = [];
 console.log(randomWord);
 setArray();
 
+function usedLetters(array) {
+
+}
 
 //Function to set answer array to false
 function setArray()
 {
   for (var i = 0; i < randomWord.length; i++) {
     answer[i] = false;
+    print(answer);
   }
 }
 //compare the letters in the chosen word with user guesses
@@ -42,8 +46,6 @@ document.onkeyup = function(event)
     }
     else if (usedLetters.indexOf(userVal) >= 0)
     {
-      document.getElementById("used").innerHTML = "Already used dumby "
-      + randomWord[i];
       break;
     }
   }
@@ -55,6 +57,10 @@ document.onkeyup = function(event)
   }
   if (usedLetters.indexOf(userVal) < 0)
     usedLetters.push(userVal);
+    document.getElementById("used").innerHTML = " ";
+    for (var i = 0; i < usedLetters.length; i++) {
+      document.getElementById("used").innerHTML += usedLetters[i] + " ";
+    }
 }
 
 function print (array)
