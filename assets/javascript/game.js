@@ -1,24 +1,24 @@
-
-var words = ["avicii"];
+//Initial variables
+var words = ["avicii", "tiesto", "swedish house mafia", "drain"];
 var wins = 0;
 var guesses = 12;
 var usedLetters = [];
 var randomWord = words[Math.floor(Math.random()*words.length)];
 const answer = [];
-
- for (var i = 0; i < randomWord.length; i++) {
-   answer[i] = false;
- }
-
 console.log(randomWord);
+setArray();
 
 
-function wordLength (){
-
+//Function to set answer array to false
+function setArray()
+{
+  for (var i = 0; i < randomWord.length; i++) {
+    answer[i] = false;
+  }
 }
-
 //compare the letters in the chosen word with user guesses
-document.onkeyup = function(event){
+document.onkeyup = function(event)
+{
   isFound = false;
   var userVal = event.key;
   console.log(userVal);
@@ -44,7 +44,6 @@ document.onkeyup = function(event){
     {
       document.getElementById("used").innerHTML = "Already used dumby "
       + randomWord[i];
-      isFound = true;
       break;
     }
   }
@@ -58,10 +57,14 @@ document.onkeyup = function(event){
     usedLetters.push(userVal);
 }
 
-function print (array){
+function print (array)
+{
   document.getElementById("print").innerHTML = "";
   for (var i = 0; i < array.length; i++) {
-    if(answer[i] === true)
+    if(answer[i] === true){
       document.getElementById("print").innerHTML += randomWord[i] + "";
+    } else{
+      document.getElementById("print").innerHTML += "_ " + " ";
+    }
   }
 }
