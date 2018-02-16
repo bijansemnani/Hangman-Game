@@ -70,6 +70,7 @@ document.onkeyup = function(event){
 
   if(winCounter === 0){
     wins++;
+    guesses = 12;
     randomWord = words[Math.floor(Math.random()*words.length)];
     winCounter = randomWord.length;
     alert("You Win !!! ");
@@ -92,6 +93,6 @@ function print (array){
 function used_Letters(array) {
   document.getElementById("used").innerHTML = " ";
   for (var i = 0; i < usedLetters.length; i++) {
-    document.getElementById("used").innerHTML += usedLetters[i] + " ";
+    document.getElementById("used").innerHTML += usedLetters[i] + " ,";
   }
 }
